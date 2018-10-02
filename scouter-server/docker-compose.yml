@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    elk-apm-server:
+        container_name: elk-apm-server
+#        restart: always
+        build:
+            context: ../scouter-server
+            dockerfile: Dockerfile
+        image: escns-glp/elk-apm-server
+        expose:
+            - 6100
+        ports:
+            - 6100:6100
+        networks:
+            default:
+                ipv4_address: 10.5.90.1
+networks:
+    default:
+        external:
+            name: service-discovery_glp-network

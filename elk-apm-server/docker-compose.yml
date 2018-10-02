@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+    elk-apm-server:
+        container_name: elk-apm-server
+#        restart: always
+        build:
+            context: ../elk-apm-server
+            dockerfile: Dockerfile
+#        expose:
+#            - 8200
+#        ports:
+#            - 8200:8200
+        command: /bin/bash
+        networks:
+            default:
+                ipv4_address: 10.5.90.1
+
+        
+networks:
+    default:
+        external:
+            name: service-discovery_glp-network

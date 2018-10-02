@@ -1,0 +1,115 @@
+version: '3'
+
+services:
+    account-database:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: encns
+        container_name: account-database
+        expose:
+            - 3306
+        ports:
+            - 13301:3306
+        networks:
+            default:
+                ipv4_address: 10.5.10.10
+        volumes:
+            - C:\project\glp\database\account:/var/lib/mysql
+
+    user-database:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: encns
+        container_name: user-database
+        expose:
+            - 3306
+        ports:
+            - 13302:3306
+        networks:
+            default:
+                ipv4_address: 10.5.10.20
+        volumes:
+            - C:\project\glp\database\user:/var/lib/mysql
+
+    game-database:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: encns
+        container_name: game-database
+        expose:
+            - 3306
+        ports:
+            - 13303:3306
+        networks:
+            default:
+                ipv4_address: 10.5.10.30
+        volumes:
+            - C:\project\glp\database\game:/var/lib/mysql
+
+    point-database:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: encns
+        container_name: point-database
+        expose:
+            - 3306
+        ports:
+            - 13304:3306
+        networks:
+            default:
+                ipv4_address: 10.5.10.40
+        volumes:
+            - C:\project\glp\database\point:/var/lib/mysql
+            
+    monitoring-database:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci 
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: encns
+        container_name: monitoring-database
+        expose:
+            - 3306
+        ports:
+            - 13305:3306
+        networks:
+            default:
+                ipv4_address: 10.5.10.50
+        volumes:
+            - C:\project\glp\database\monitoring:/var/lib/mysql        
+
+# networks:
+#     default:
+#         external:
+#             name: service-discovery_glp-network
+
+networks:
+    default:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.5.0.0/16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
